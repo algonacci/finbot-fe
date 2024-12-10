@@ -3,6 +3,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
+
 
 interface StockInfo {
     name: string;
@@ -30,6 +32,7 @@ function Tickers() {
     const [stockInfo, setStockInfo] = useState<StockInfo | null>(null);
     const [chartUrl, setChartUrl] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     const handleAnalyze = async () => {
         setLoading(true);
@@ -61,6 +64,10 @@ function Tickers() {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleChatRedirect = () => {
+      navigate(`/chat?symbol=${stockInfo?.symbol}`);
     };
 
     return (
@@ -118,7 +125,7 @@ function Tickers() {
                         <p className="text-sm text-gray-700">{stockInfo.description}</p>
                     </div>
                     <Button
-                        onClick={() => window.location.href = '/chat'}
+                        onClick={handleChatRedirect}
                         variant="default"
                         className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold mt-4"
                     >
