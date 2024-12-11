@@ -47,7 +47,7 @@ const ChatPage = () => {
 
       try {
         const response = await fetch(
-          `http://127.0.0.1:5000/get_ticker_data?session_id=${newSessionId}&tickers=${symbol}`
+          `${import.meta.env.VITE_API_URL}/get_ticker_data?session_id=${newSessionId}&tickers=${symbol}`
         );
         const data: ApiResponse = await response.json();
 
@@ -92,7 +92,7 @@ const ChatPage = () => {
     setIsWaiting(true);
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/chat", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -147,10 +147,16 @@ const ChatPage = () => {
     <div className="h-screen flex flex-col">
       {/* Fixed Navbar */}
       <div className="fixed top-0 left-0 right-0 z-10 bg-white border-b border-gray-200 shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 py-4">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <h2 className="text-lg font-semibold text-gray-800">
             Stock Analysis - {symbol}
           </h2>
+          <button
+            onClick={() => window.location.href = '/'}
+            className="text-blue-600 hover:text-blue-800 transition-all duration-200"
+          >
+            Back to Home
+          </button>
           {isInitializing && (
             <div className="text-sm text-gray-500">
               Initializing chat...
