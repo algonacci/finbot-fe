@@ -118,7 +118,7 @@ function Tickers() {
                             <li className="text-sm text-gray-700">Website: <a href={stockInfo.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">{stockInfo.website}</a></li>
                             <li className="text-sm text-gray-700">Country: <span className="font-semibold">{stockInfo.country}</span></li>
                             <li className="text-sm text-gray-700">Phone: <span className="font-semibold">{stockInfo.phone}</span></li>
-                            <li className="text-sm text-gray-700">Address: <span className="font-semibold">{stockInfo.address}, {stockInfo.city}, {stockInfo.state}, {stockInfo.zip}</span></li>
+                            <li className="text-sm text-gray-700">Address: <span className="font-semibold">{stockInfo.address}, {stockInfo.city}, {stockInfo.zip}</span></li>
                             <li className="text-sm text-gray-700">Full Time Employees: <span className="font-semibold">{stockInfo.full_time_employees}</span></li>
                         </ul>
                     </div>
