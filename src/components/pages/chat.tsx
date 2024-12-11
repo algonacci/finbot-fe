@@ -47,7 +47,15 @@ const ChatPage = () => {
 
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/get_ticker_data?session_id=${newSessionId}&tickers=${symbol}`
+          `${import.meta.env.VITE_API_URL}/get_ticker_data?session_id=${newSessionId}&tickers=${symbol}`,
+          {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            mode: 'cors',  // Enable CORS mode
+            credentials: 'include',  // Include cookies if necessary
+          }
         );
         const data: ApiResponse = await response.json();
 
@@ -98,6 +106,8 @@ const ChatPage = () => {
           "Content-Type": "application/json",
           'Authorization': `Bearer ${import.meta.env.VITE_SECRET_KEY}`
         },
+        mode: 'cors',  // Enable CORS mode
+        credentials: 'include',  // Include cookies if necessary
         body: JSON.stringify({
           session_id: sessionId,
           messages: [userMessage.content],

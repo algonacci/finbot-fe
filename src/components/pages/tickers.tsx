@@ -47,6 +47,8 @@ function Tickers() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${import.meta.env.VITE_SECRET_KEY}`
                 },
+                mode: 'cors',  // Enable CORS mode
+                credentials: 'include',  // Include cookies if necessary
                 body: JSON.stringify({ ticker }),
             });
 
