@@ -163,7 +163,7 @@ const ChatPage = () => {
           </h2>
           <button
             onClick={() => window.location.href = '/'}
-            className="text-blue-600 hover:text-blue-800 transition-all duration-200"
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all duration-200"
           >
             Back to Home
           </button>
@@ -176,7 +176,7 @@ const ChatPage = () => {
       </div>
 
       {/* Messages Container - Adjust top padding to account for fixed navbar */}
-      <div className="flex-1 overflow-y-auto bg-gray-50 pt-[76px]"> {/* Adjust this value based on your navbar height */}
+      <div className="flex-1 overflow-y-auto bg-gray-50 pt-[76px]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="py-4 space-y-4">
             {messages.map((message) => (
@@ -216,7 +216,7 @@ const ChatPage = () => {
       {/* Input Container - Fixed at bottom */}
       <div className="flex-none bg-white border-t border-gray-200">
         <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
             <input
               ref={inputRef}
               type="text"
@@ -230,7 +230,7 @@ const ChatPage = () => {
             <button
               onClick={handleSend}
               disabled={isWaiting || isInitializing || !input.trim()}
-              className={`px-8 py-4 rounded-xl font-semibold transition-all duration-200
+              className={`w-full sm:w-auto px-8 py-4 rounded-xl font-semibold transition-all duration-200
                 ${isWaiting || isInitializing || !input.trim()
                   ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                   : "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800"
