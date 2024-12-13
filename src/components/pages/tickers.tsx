@@ -39,6 +39,7 @@ function Tickers() {
         setError(null);
         setStockInfo(null);
         setChartUrl(null);
+        setTicker('');
         
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/ticker`, {
@@ -78,6 +79,9 @@ function Tickers() {
             <p className="text-base sm:text-lg text-gray-600 mb-8 text-center max-w-lg">
                 Get real-time insights and analysis on your favorite stocks. Simply enter the ticker symbol below.
             </p>
+            <p className="text-sm text-gray-500 mb-4 text-center max-w-lg">
+                Data is sourced from Yahoo Finance. For Indonesian stocks, please use the JK suffix, e.g., BBCA.JK.
+            </p>
             <div className="w-full max-w-sm sm:max-w-md">
                 <Input
                     placeholder="Enter stock ticker"
@@ -88,7 +92,7 @@ function Tickers() {
                     onClick={handleAnalyze}
                     variant="default"
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold mt-4"
-                    disabled={loading}
+                    disabled={loading || ticker.length < 3}
                 >
                     {loading ? 'Analyzing...' : 'Analyze'}
                 </Button>
